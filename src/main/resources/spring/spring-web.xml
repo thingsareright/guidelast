@@ -30,5 +30,5 @@
     </bean>
 
     <!-- 4.扫描web相关的bean -->
-    <context:component-scan base-package="controller"/>
+    <context:component-scan base-package="ssm.controller"/>
 </beans>

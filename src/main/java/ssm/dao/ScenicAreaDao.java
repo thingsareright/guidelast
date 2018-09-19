@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface ScenicAreaDao {
 
-    List<ScenicArea> findAll();
+    //ONLY TEST ORIGINALLY
+    List<ScenicArea> findARecord();
 
     Integer insertScenicAreaRecord(@Param("scenicArea") ScenicArea scenicArea);
 }

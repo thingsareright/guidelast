@@ -17,8 +17,8 @@ public class Scenic_Area_DaoTest {
     ScenicAreaDao scenic_areaDao;
 
     @Test
-    public void findAllTest() {
-        List<ScenicArea> scenic_areas = scenic_areaDao.findAll();
+    public void findARecordTest() {
+        List<ScenicArea> scenic_areas = scenic_areaDao.findARecord();
         for (ScenicArea scenic_area :
                 scenic_areas) {
             System.out.println(scenic_area);

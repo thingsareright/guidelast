@@ -1,81 +1,81 @@
 package ssm.entity;
 
 public class ScenicArea {
-    private int scenicareaid;
-    private String scenicareaname;
-    private String scenicareaintroduce;
-    private float scenicarealongitude;
-    private float scenicareadimension;
-    private float scenicareascore;
+    private int scenicAreaId;
+    private String scenicAreaName;
+    private String scenicAreaIntroduce;
+    private float scenicAreaLongitude;
+    private float scenicAreaDimension;
+    private float scenicAreaScore;
 
     public ScenicArea() {
     }
 
-    public ScenicArea(String scenicareaname, String scenicareaintroduce, float scenicarealongitude, float scenicareadimension, float scenicareascore) {
-        this.scenicareaname = scenicareaname;
-        this.scenicareaintroduce = scenicareaintroduce;
-        this.scenicarealongitude = scenicarealongitude;
-        this.scenicareadimension = scenicareadimension;
-        this.scenicareascore = scenicareascore;
+    public ScenicArea(String scenicAreaName, String scenicAreaIntroduce, float scenicAreaLongitude, float scenicAreaDimension, float scenicAreaScore) {
+        this.scenicAreaName = scenicAreaName;
+        this.scenicAreaIntroduce = scenicAreaIntroduce;
+        this.scenicAreaLongitude = scenicAreaLongitude;
+        this.scenicAreaDimension = scenicAreaDimension;
+        this.scenicAreaScore = scenicAreaScore;
+    }
+
+    public int getScenicAreaId() {
+        return scenicAreaId;
+    }
+
+    public void setScenicAreaId(int scenicAreaId) {
+        this.scenicAreaId = scenicAreaId;
+    }
+
+    public String getScenicAreaName() {
+        return scenicAreaName;
+    }
+
+    public void setScenicAreaName(String scenicAreaName) {
+        this.scenicAreaName = scenicAreaName;
+    }
+
+    public String getScenicAreaIntroduce() {
+        return scenicAreaIntroduce;
+    }
+
+    public void setScenicAreaIntroduce(String scenicAreaIntroduce) {
+        this.scenicAreaIntroduce = scenicAreaIntroduce;
+    }
+
+    public float getScenicAreaLongitude() {
+        return scenicAreaLongitude;
+    }
+
+    public void setScenicAreaLongitude(float scenicAreaLongitude) {
+        this.scenicAreaLongitude = scenicAreaLongitude;
+    }
+
+    public float getScenicAreaDimension() {
+        return scenicAreaDimension;
+    }
+
+    public void setScenicAreaDimension(float scenicAreaDimension) {
+        this.scenicAreaDimension = scenicAreaDimension;
+    }
+
+    public float getScenicAreaScore() {
+        return scenicAreaScore;
+    }
+
+    public void setScenicAreaScore(float scenicAreaScore) {
+        this.scenicAreaScore = scenicAreaScore;
     }
 
     @Override
     public String toString() {
         return "ScenicArea{" +
-                "scenicareaid=" + scenicareaid +
-                ", scenicareaname='" + scenicareaname + '\'' +
-                ", scenicareaintroduce='" + scenicareaintroduce + '\'' +
-                ", scenicarealongitude=" + scenicarealongitude +
-                ", scenicareadimension=" + scenicareadimension +
-                ", scenicareascore=" + scenicareascore +
+                "scenicAreaId=" + scenicAreaId +
+                ", scenicAreaName='" + scenicAreaName + '\'' +
+                ", scenicAreaIntroduce='" + scenicAreaIntroduce + '\'' +
+                ", scenicAreaLongitude=" + scenicAreaLongitude +
+                ", scenicAreaDimension=" + scenicAreaDimension +
+                ", scenicAreaScore=" + scenicAreaScore +
                 '}';
-    }
-
-    public int getScenicareaid() {
-        return scenicareaid;
-    }
-
-    public void setScenicareaid(int scenicareaid) {
-        this.scenicareaid = scenicareaid;
-    }
-
-    public String getScenicareaname() {
-        return scenicareaname;
-    }
-
-    public void setScenicareaname(String scenicareaname) {
-        this.scenicareaname = scenicareaname;
-    }
-
-    public String getScenicareaintroduce() {
-        return scenicareaintroduce;
-    }
-
-    public void setScenicareaintroduce(String scenicareaintroduce) {
-        this.scenicareaintroduce = scenicareaintroduce;
-    }
-
-    public float getScenicarealongitude() {
-        return scenicarealongitude;
-    }
-
-    public void setScenicarealongitude(float scenicarealongitude) {
-        this.scenicarealongitude = scenicarealongitude;
-    }
-
-    public float getScenicareadimension() {
-        return scenicareadimension;
-    }
-
-    public void setScenicareadimension(float scenicareadimension) {
-        this.scenicareadimension = scenicareadimension;
-    }
-
-    public float getScenicareascore() {
-        return scenicareascore;
-    }
-
-    public void setScenicareascore(float scenicareascore) {
-        this.scenicareascore = scenicareascore;
     }
 }

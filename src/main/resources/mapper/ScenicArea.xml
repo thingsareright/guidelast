@@ -4,13 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ssm.dao.ScenicAreaDao">
 
-    <select id="findAll" resultType="ssm.entity.ScenicArea">
-        SELECT * FROM scenic_area
+    <select id="findARecord" resultType="ssm.entity.ScenicArea">
+        SELECT * FROM scenic_area LIMTI 0,1
     </select>
 
     <insert id="insertScenicAreaRecord" parameterType="ssm.entity.ScenicArea" useGeneratedKeys="true">
         INSERT INTO scenic_area(scenic_area_name, scenic_area_introduce, scenic_area_longitude,
-        scenic_area_dimension, scenic_area_score) VALUES ("${scenicArea.scenicareaname}", "${scenicArea.scenicareaintroduce}",
-        ${scenicArea.scenicarealongitude},${scenicArea.scenicareadimension}, ${scenicArea.scenicareascore})
+        scenic_area_dimension, scenic_area_score) VALUES ("${scenicArea.scenicaAreaName}", "${scenicArea.scenicAreaIntroduce}",
+        ${scenicArea.scenicAreaLongitude},${scenicArea.scenicAreaDimension}, ${scenicArea.scenicAreaScore})
     </insert>
 </mapper>

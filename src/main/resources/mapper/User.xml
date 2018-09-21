@@ -10,4 +10,10 @@
     <select id="existEmailAddress" resultType="java.lang.String">
         SELECT user_email FROM user WHERE user_email = "${emailAddress}" LIMIT 0,1
     </select>
+    
+    <insert id="addAUser" useGeneratedKeys="true">
+        INSERT INTO user(user_email, user_password, user_name, user_picture_url, user_sex, user_birthday)
+        VALUE ("${newUser.userEmail}","${newUser.userPassword}", "${newUser.userName}",
+        "${newUser.userPictureUrl}", ${newUser.userSex}, "${newUser.userBirthday}")
+    </insert>
 </mapper>

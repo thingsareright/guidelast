@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ssm.entity.User;
 
+import java.sql.Date;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -29,5 +30,15 @@ public class UserDaoTest {
     public void existEmailAddressTest() {
         String emailAddress = userDao.existEmailAddress("max@qq.com");
         System.out.println(emailAddress);
+    }
+
+    @Test
+    public void addAUserTest() {
+        String user_email = "mengleizzu@163.com";
+        String user_password = "123456";
+        System.out.println(userDao.addAUser(
+                    new User(user_email,user_password,"孟磊","1",1, Date.valueOf("2010-08-20"))
+                )
+        );
     }
 }

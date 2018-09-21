@@ -6,4 +6,8 @@
     <select id="findARecord" resultType="ssm.entity.User">
         SELECT * FROM user LIMIT 0,1
     </select>
+
+    <select id="existEmailAddress" resultType="java.lang.String">
+        SELECT user_email FROM user WHERE user_email = "${emailAddress}" LIMIT 0,1
+    </select>
 </mapper>

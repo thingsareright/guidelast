@@ -10,6 +10,9 @@ import java.util.Properties;
 
 public class EmailUtil {
 
+    //验证码有效时间
+    public final static int TOKEN_TIME = 10;
+
     //email 你要发给谁      //authcode  验证码
     public static void email(String email,Integer authcode)throws Exception {
         Properties properties = new Properties();
@@ -21,7 +24,7 @@ public class EmailUtil {
         //邮件信息
         Message messgae = new MimeMessage(session);
         messgae.setFrom(new InternetAddress("2271366490@qq.com"));//设置发送人
-        messgae.setText("你的验证码为："+authcode+"。请注意，验证码有效时间为10分钟！！！");//设置邮件内容
+        messgae.setText("你的验证码为："+String.valueOf(authcode)+"。请注意，验证码有效时间为10分钟！！！");//设置邮件内容
         messgae.setSubject("邮箱验证");//设置邮件主题
         //发送邮件
         Transport tran = session.getTransport();

@@ -24,4 +24,10 @@ public class UserDaoTest {
             System.out.println(user);
         }
     }
+
+    @Test
+    public void existEmailAddressTest() {
+        String emailAddress = userDao.existEmailAddress("max@qq.com");
+        System.out.println(emailAddress);
+    }
 }

@@ -2,7 +2,7 @@ package ssm.entity;
 
 public class User {
 
-    private String userTel;
+    private String userEmail;
     private String userPassword;
     private String userName;
     private String userPictureUrl;
@@ -10,19 +10,19 @@ public class User {
     public User() {
     }
 
-    public User(String userTel, String userPassword, String userName, String userPictureUrl) {
-        this.userTel = userTel;
+    public User(String userEmail, String userPassword, String userName, String userPictureUrl) {
+        this.userEmail = userEmail;
         this.userPassword = userPassword;
         this.userName = userName;
         this.userPictureUrl = userPictureUrl;
     }
 
-    public String getUserTel() {
-        return userTel;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setUserTel(String userTel) {
-        this.userTel = userTel;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public String getUserPassword() {
@@ -52,11 +52,10 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "userTel='" + userTel + '\'' +
+                "userEmail='" + userEmail + '\'' +
                 ", userPassword='" + userPassword + '\'' +
                 ", userName='" + userName + '\'' +
                 ", userPictureUrl='" + userPictureUrl + '\'' +
                 '}';
     }
-
 }

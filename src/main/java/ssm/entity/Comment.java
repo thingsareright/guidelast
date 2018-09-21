@@ -5,7 +5,7 @@ import java.sql.Time;
 public class Comment {
 
     private int commentId;
-    private String userTel;
+    private String userEmail;
     private int scenicSpotId;
     private int scenicAreaId;
     private String commentText;
@@ -14,8 +14,17 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(String userTel, int scenicSpotId, int scenicAreaId, String commentText, Time commentTime) {
-        this.userTel = userTel;
+    public Comment(int commentId, String userEmail, int scenicSpotId, int scenicAreaId, String commentText, Time commentTime) {
+        this.commentId = commentId;
+        this.userEmail = userEmail;
+        this.scenicSpotId = scenicSpotId;
+        this.scenicAreaId = scenicAreaId;
+        this.commentText = commentText;
+        this.commentTime = commentTime;
+    }
+
+    public Comment(String userEmail, int scenicSpotId, int scenicAreaId, String commentText, Time commentTime) {
+        this.userEmail = userEmail;
         this.scenicSpotId = scenicSpotId;
         this.scenicAreaId = scenicAreaId;
         this.commentText = commentText;
@@ -30,12 +39,12 @@ public class Comment {
         this.commentId = commentId;
     }
 
-    public String getUserTel() {
-        return userTel;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setUserTel(String userTel) {
-        this.userTel = userTel;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public int getScenicSpotId() {
@@ -74,7 +83,7 @@ public class Comment {
     public String toString() {
         return "Comment{" +
                 "commentId=" + commentId +
-                ", userTel='" + userTel + '\'' +
+                ", userEmail='" + userEmail + '\'' +
                 ", scenicSpotId=" + scenicSpotId +
                 ", scenicAreaId=" + scenicAreaId +
                 ", commentText='" + commentText + '\'' +

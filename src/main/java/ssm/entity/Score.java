@@ -5,16 +5,24 @@ public class Score {
     private int scoreId;
     private int scenicAreaId;
     private int scenicSpotId;
-    private String userTel;
+    private String userEmail;
     private float score;
 
     public Score() {
     }
 
-    public Score(int scenicAreaId, int scenicSpotId, String userTel, float score) {
+    public Score(int scoreId, int scenicAreaId, int scenicSpotId, String userEmail, float score) {
+        this.scoreId = scoreId;
         this.scenicAreaId = scenicAreaId;
         this.scenicSpotId = scenicSpotId;
-        this.userTel = userTel;
+        this.userEmail = userEmail;
+        this.score = score;
+    }
+
+    public Score(int scenicAreaId, int scenicSpotId, String userEmail, float score) {
+        this.scenicAreaId = scenicAreaId;
+        this.scenicSpotId = scenicSpotId;
+        this.userEmail = userEmail;
         this.score = score;
     }
 
@@ -42,12 +50,12 @@ public class Score {
         this.scenicSpotId = scenicSpotId;
     }
 
-    public String getUserTel() {
-        return userTel;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setUserTel(String userTel) {
-        this.userTel = userTel;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public float getScore() {
@@ -64,9 +72,8 @@ public class Score {
                 "scoreId=" + scoreId +
                 ", scenicAreaId=" + scenicAreaId +
                 ", scenicSpotId=" + scenicSpotId +
-                ", userTel='" + userTel + '\'' +
+                ", userEmail='" + userEmail + '\'' +
                 ", score=" + score +
                 '}';
     }
-
 }

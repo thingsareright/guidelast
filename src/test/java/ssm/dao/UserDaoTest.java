@@ -41,4 +41,10 @@ public class UserDaoTest {
                 )
         );
     }
+
+    @Test
+    public void findPasswordByEmailAddressTest() {
+        String user_email = "mengleizzu@16312.com";
+        System.out.println(userDao.findPasswordByEmailAddress(user_email));
+    }
 }

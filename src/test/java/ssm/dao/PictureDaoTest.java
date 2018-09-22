@@ -24,4 +24,9 @@ public class PictureDaoTest {
             System.out.println(picture);
         }
     }
+
+    @Test
+    public void findFirstPictureByScenicSpotIdTest() {
+        System.out.println(pictureDao.findFirstPictureByScenicSpotId(1));
+    }
 }

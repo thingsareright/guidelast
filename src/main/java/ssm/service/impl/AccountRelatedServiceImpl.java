@@ -1,13 +1,15 @@
 package ssm.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import ssm.dao.UserDao;
 import ssm.dto.UserInfoRegister;
-import ssm.entity.User;
 import ssm.exception.SendAuthorCodeEmailFailException;
+import ssm.service.AccountedRelatedService;
 import ssm.utils.EmailUtil;
 
 import javax.annotation.Resource;
@@ -19,7 +21,9 @@ import java.util.concurrent.TimeUnit;
  * 提供与账号和用户个人信息有关的业务支持
  */
 @Service
-public class AccountRelatedService {
+public class AccountRelatedServiceImpl implements AccountedRelatedService {
+
+    private final Logger logger= LoggerFactory.getLogger(this.getClass());
 
     private static final int EMAILADDRESS_ALREADY_EXIST = 2;
     private static final int EMAILADDRESS_ALREADY_SEND = 1;
@@ -29,6 +33,11 @@ public class AccountRelatedService {
     private static final int REGISTER_EMAIL_REGISTERED = 2;
     private static final int REGISTER_TOKEN_WRONG = 3;
     private static final int REGISTER_CONFLICT_TOKEN = 4;
+
+    private static final int LOGIN_SUCCESSFULLY = 1;
+    private static final int NONE_LOGIN_EMAILADDRESS = 2;
+    private static final int LOGIN_PASSWORD_WRONG = 3;
+
     @Autowired
     UserDao userDao;
     @Resource
@@ -38,7 +47,7 @@ public class AccountRelatedService {
         Random random = new Random();
         int authorCode = random.nextInt(1000000);
         try {
-            //TODO 对邮箱格式进行验证,还都没有redis验证
+            //TODO 对邮箱格式进行验证
             EmailUtil.email(emailAddress, Integer.valueOf(authorCode));
             //把验证码放入缓存，并设置有效时间为十分钟
             ValueOperations valueOperations = redisTemplate.opsForValue();
@@ -59,11 +68,14 @@ public class AccountRelatedService {
         //先判断数据库里是否已经存在了该邮箱地址
         String emailAddressEqual = userDao.existEmailAddress(emailAddress);
         if (null != emailAddressEqual){
+            logger.debug("sendEmailAndReturnState","EMAILADDRESS_ALREADY_EXIST");
             return EMAILADDRESS_ALREADY_EXIST;
         }
         try {
             sendEmail(emailAddress);
+            logger.debug("sendEmailAndReturnState","EMAILADDRESS_SEND_SUCCESSFULLY");
         } catch (SendAuthorCodeEmailFailException e){
+            logger.debug("sendEmailAndReturnState","EMAILADDRESS_CANNOT_SEND_AUTHORCODE");
             return EMAILADDRESS_CANNOT_SEND_AUTHORCODE;
         }
         return EMAILADDRESS_ALREADY_SEND;
@@ -73,6 +85,7 @@ public class AccountRelatedService {
         //第一步，先查看邮箱地址是否已经被注册
         String emailAddressEqual = userDao.existEmailAddress(user.getUserEmail());
         if (null != emailAddressEqual){
+            logger.debug("registerWithEmailAddress","REGISTER_EMAIL_REGISTERED");
             return REGISTER_EMAIL_REGISTERED;
         }
         //第二步，验证验证码是否正确
@@ -81,15 +94,20 @@ public class AccountRelatedService {
         String token = String.valueOf(valueOperations.get(user.getUserEmail()));
         if (token.equals(user.getToken())){
             //如果验证码正确，那么执行注册插入逻辑
+            logger.debug("registerWithEmailAddress","TOKEN_RIGHT");
             userDao.addAUser(user);
+            logger.debug("registerWithEmailAddress","INSERT_USER_SUCCESSFULLY");
         } else {
+            logger.debug("registerWithEmailAddress","REGISTER_TOKEN_WRONG");
             return REGISTER_TOKEN_WRONG;
         }
+        logger.debug("registerWithEmailAddress","REGISTER_OK");
         return REGISTER_OK;
     }
 
     public int registerWithEmailAddress(UserInfoRegister userInfoRegister, String confirmPassword) {
-        if (confirmPassword.equals(userInfoRegister.getUserPassword())){
+        if (!confirmPassword.equals(userInfoRegister.getUserPassword())){
+            logger.debug("registerWithEmailAddress","REGISTER_CONFLICT_TOKEN");
             return REGISTER_CONFLICT_TOKEN;
         } else {
             return registerWithEmailAddress(userInfoRegister);
@@ -108,8 +126,21 @@ public class AccountRelatedService {
      * @param userPictureUrl
      * @return
      */
-    public int registerWithEmailAddress(String emailAddress,String token, String name, String sex, String birthday,
+    @Override
+    public int registerWithEmailAddress(String emailAddress, String token, String name, String sex, String birthday,
                                         String password, String confirmPassword, String userPictureUrl) {
         return registerWithEmailAddress(new UserInfoRegister(emailAddress,password,name,userPictureUrl,Integer.parseInt(sex), Date.valueOf(birthday),token), confirmPassword);
+    }
+
+    public int loginWithEmailAndPassword(String emailAddress, String password) {
+        String emailInDb = userDao.existEmailAddress(emailAddress);
+        if (null == emailInDb){
+            return NONE_LOGIN_EMAILADDRESS;
+        }
+        String passwordInDb = userDao.findPasswordByEmailAddress(emailAddress);
+        if (null != passwordInDb && password.equals(passwordInDb)){
+            return LOGIN_SUCCESSFULLY;
+        }
+        return LOGIN_PASSWORD_WRONG;
     }
 }

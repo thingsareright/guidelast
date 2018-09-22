@@ -11,7 +11,7 @@ import java.util.Properties;
 public class EmailUtil {
 
     //验证码有效时间
-    public final static int TOKEN_TIME = 10;
+    public final static int TOKEN_TIME = 30;
 
     //email 你要发给谁      //authcode  验证码
     public static void email(String email,Integer authcode)throws Exception {

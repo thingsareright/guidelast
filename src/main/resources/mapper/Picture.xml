@@ -7,4 +7,9 @@
     <select id="findARecord" resultType="ssm.entity.Picture">
         SELECT * FROM picture LIMIT 0,1
     </select>
+
+    <select id="findFirstPictureByScenicSpotId" resultType="java.lang.String" >
+        SELECT picture_url FROM picture WHERE scenic_spot_id = ${scenicSpotId} LIMIT 1
+    </select>
+
 </mapper>

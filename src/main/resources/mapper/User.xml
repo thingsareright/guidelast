@@ -16,4 +16,8 @@
         VALUE ("${newUser.userEmail}","${newUser.userPassword}", "${newUser.userName}",
         "${newUser.userPictureUrl}", ${newUser.userSex}, "${newUser.userBirthday}")
     </insert>
+
+    <select id="findPasswordByEmailAddress" resultType="java.lang.String">
+        SELECT user_password FROM user WHERE user_email = "${emailAddress}"
+    </select>
 </mapper>

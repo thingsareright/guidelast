@@ -31,4 +31,5 @@ public class Scenic_Area_DaoTest {
 
         scenic_areaDao.insertScenicAreaRecord(scenicArea);
     }
+
 }

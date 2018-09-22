@@ -18,4 +18,6 @@ public interface UserDao {
     String existEmailAddress(@Param("emailAddress")String emailAddress);
 
     Integer addAUser(@Param("newUser")User user);
+
+    String findPasswordByEmailAddress(@Param("emailAddress") String emailAddress);
 }

@@ -2,6 +2,8 @@ package ssm.dao;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestParam;
+import ssm.dto.ScenicSpotIntroduceInfo;
+import ssm.dto.SearchScenicSpotInfo;
 import ssm.dto.VoiceExplainInfo;
 import ssm.entity.ScenicSpot;
 
@@ -34,5 +36,25 @@ public interface ScenicSpotDao {
      * @return
      */
     String findVoiceHelperDistinguish(@Param("helper") String helper);
+
+    /**
+     * 获取景点的信息
+     * @param scenicSpotId
+     * @return
+     */
+    ScenicSpotIntroduceInfo findScenicSpotIntroduceInfo(@Param("scenicSpotId") int scenicSpotId);
+
+    /**
+     * 搜索景点名称较相似的十个景点
+     * @param name
+     * @return
+     */
+    List<SearchScenicSpotInfo> searchScenicSpotByName(@Param("name") String name);
+
+    /**
+     * 从数据库中随机选取十个景点
+     * @return
+     */
+    List<SearchScenicSpotInfo> searchScenicSpotRandom();
 
 }

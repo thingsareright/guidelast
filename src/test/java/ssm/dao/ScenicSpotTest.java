@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import ssm.dto.SearchScenicSpotInfo;
 import ssm.dto.VoiceExplainInfo;
 import ssm.entity.ScenicSpot;
 
@@ -44,6 +45,29 @@ public class ScenicSpotTest {
     @Test
     public void findVoiceHelperDistinguishTest() {
         System.out.println(scenicSpotDao.findVoiceHelperDistinguish("图书"));
+    }
+
+    @Test
+    public void findScenicSpotIntroduceInfoTest() {
+        System.out.println(scenicSpotDao.findScenicSpotIntroduceInfo(1));
+    }
+
+    @Test
+    public void searchScenicSpotByNameTest() {
+        List<SearchScenicSpotInfo> searchScenicSpotInfos = scenicSpotDao.searchScenicSpotByName("图书馆");
+        for (SearchScenicSpotInfo searchScenicSpotInfo :
+                searchScenicSpotInfos) {
+            System.out.println(searchScenicSpotInfo);
+        }
+    }
+
+    @Test
+    public void searchScenicSpotRandomTest() {
+        List<SearchScenicSpotInfo> searchScenicSpotInfos = scenicSpotDao.searchScenicSpotRandom();
+        for (SearchScenicSpotInfo searchScenicSpotInfo :
+                searchScenicSpotInfos) {
+            System.out.println(searchScenicSpotInfo);
+        }
     }
 
 }

@@ -1,6 +1,8 @@
 package ssm.service;
 
 import ssm.dto.MainInterfaceScenicSpotInfo;
+import ssm.dto.ScenicSpotIntroduceInfo;
+import ssm.dto.SearchScenicSpotInfo;
 import ssm.dto.VoiceExplainInfo;
 
 import java.util.List;
@@ -19,4 +21,9 @@ public interface MapRelatedService {
     List<MainInterfaceScenicSpotInfo> findMainInterfaceScenicSpotInfo(float longitude, float dimension);
 
 
+    ScenicSpotIntroduceInfo requestScenicSpotIntroduceInfo(int scenicSpotId);
+
+    List<SearchScenicSpotInfo> searchScenicSpotByName(String name);
+
+    List<SearchScenicSpotInfo> searchScenicSpotRandom();
 }

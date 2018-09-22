@@ -22,4 +22,24 @@
     <select id="findVoiceHelperDistinguish" resultType="java.lang.String">
         SELECT scenic_spot_introduce FROM scenic_spot WHERE scenic_spot_name LIKE '%${helper}%' ORDER BY REPLACE(scenic_spot_name, '${helper}', '') LIMIT 1
     </select>
+
+    <select id="findScenicSpotIntroduceInfo" resultType="ssm.dto.ScenicSpotIntroduceInfo" >
+        SELECT scenic_spot.scenic_spot_id, scenic_spot.scenic_spot_name, scenic_spot.scenic_spot_introduce, picture.picture_url
+        FROM scenic_spot, picture
+        WHERE scenic_spot.scenic_spot_id=${scenicSpotId} AND scenic_spot.scenic_spot_id=picture.scenic_spot_id
+    </select>
+
+    <select id="searchScenicSpotByName" resultType="ssm.dto.SearchScenicSpotInfo">
+        SELECT scenic_spot.scenic_spot_id, scenic_spot.scenic_spot_name,picture.picture_url
+        FROM scenic_spot, picture
+        WHERE scenic_spot.scenic_spot_name LIKE '%${name}%' AND scenic_spot.scenic_spot_id = picture.picture_id
+        ORDER BY REPLACE(scenic_spot.scenic_spot_name, '%${name}%', '') LIMIT 10
+    </select>
+
+    <select id="searchScenicSpotRandom" resultType="ssm.dto.SearchScenicSpotInfo" >
+        SELECT scenic_spot.scenic_spot_id, scenic_spot.scenic_spot_name,picture.picture_url
+        FROM scenic_spot, picture
+        WHERE scenic_spot.scenic_spot_id = picture.picture_id
+        ORDER BY rand() LIMIT 10
+    </select>
 </mapper>

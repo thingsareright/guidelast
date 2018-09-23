@@ -46,4 +46,34 @@ public class AccountRelatedServiceImpl {
                 userPictureUrl));
     }
 
+    @Test
+    public void findARecordByEmail(){
+        String user_email = "mengleizzu@163.com";
+        System.out.println(accountRelatedServiceImpl.findUserByEmailAddress(user_email));
+    }
+
+    @Test
+    public  void updateHeadByEmailAddress(){
+        String user_email = "mengleizzu@163.com";
+        accountRelatedServiceImpl.updateHeadByEmailAddress(user_email,"2");
+    }
+
+    @Test
+    public void updateUserByEmailAddress(){
+        String email = "2271366490@qq.com";
+        String userName = "孟磊";
+        String userHeadPictureUrl = "1";
+        int userSex = 1;
+        Date date=new Date(1997-5-5);
+        accountRelatedServiceImpl.updateUserByEmailAddress(email,userName,userHeadPictureUrl,userSex,date);
+    }
+
+    @Test
+    public void updatePassword(){
+        String email = "2271366490@qq.com";
+        String oldPassword = "233333";
+        String newPassword = "123456";
+        accountRelatedServiceImpl.updatePassword(email,oldPassword,newPassword);
+    }
+
 }

@@ -1,10 +1,9 @@
-package ssm.dao;
+package ssm.service;
 
 import ssm.entity.Card;
 
 import java.util.List;
 
-public interface CardDao {
-    //ONLY TEST ORIGINALLY
+public interface CardRelatedService {
     List<Card> findAllRecord();
 }

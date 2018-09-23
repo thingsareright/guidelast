@@ -8,6 +8,7 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import ssm.dao.UserDao;
 import ssm.dto.UserInfoRegister;
+import ssm.entity.User;
 import ssm.exception.SendAuthorCodeEmailFailException;
 import ssm.service.AccountedRelatedService;
 import ssm.utils.EmailUtil;
@@ -37,6 +38,8 @@ public class AccountRelatedServiceImpl implements AccountedRelatedService {
     private static final int LOGIN_SUCCESSFULLY = 1;
     private static final int NONE_LOGIN_EMAILADDRESS = 2;
     private static final int LOGIN_PASSWORD_WRONG = 3;
+
+    private static final int OLD_PASSWORD_WRONG = 0;
 
     @Autowired
     UserDao userDao;
@@ -143,4 +146,54 @@ public class AccountRelatedServiceImpl implements AccountedRelatedService {
         }
         return LOGIN_PASSWORD_WRONG;
     }
+
+    /**
+     * 根据邮箱查用户信息
+     */
+    public User findUserByEmailAddress(String emailAddress){
+        User user = userDao.findARecordByEmail(emailAddress);
+        return user;
+    }
+
+    /**
+     * 修改头像
+     * @param emailAddress
+     * @param headFlag
+     * @return
+     */
+    public Integer updateHeadByEmailAddress(String emailAddress,String headFlag){
+        return userDao.updateHeadByEmailAddress(emailAddress,headFlag);
+    }
+
+    /**
+     * 修改个人信息
+     * @param emailAddress
+     * @param userName
+     * @param headFlag
+     * @param sex
+     * @param birthday
+     * @return
+     */
+    public Integer updateUserByEmailAddress(String emailAddress,String userName, String headFlag, int sex, Date birthday){
+        return userDao.updateUserByEmailAddress(emailAddress,userName,headFlag,sex,birthday);
+    }
+
+    /**
+     * 修改密码
+     * 先检查旧密码是否正确，再更新
+     * @param emailAddress
+     * @param oldPassword
+     * @param newPassword
+     * @return
+     */
+    public Integer updatePassword(String emailAddress,String oldPassword,String newPassword){
+        String old = userDao.checkOldPassword(emailAddress,oldPassword);
+        if(null ==old){
+            return OLD_PASSWORD_WRONG;
+        }else {
+            return userDao.updatePassword(emailAddress,newPassword);
+        }
+    }
+
+
 }

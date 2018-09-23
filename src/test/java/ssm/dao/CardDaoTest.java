@@ -18,7 +18,7 @@ public class CardDaoTest {
 
     @Test
     public void findARecordTest() {
-        List<Card> cards = cardDao.findARecord();
+        List<Card> cards = cardDao.findAllRecord();
         for (Card card :
                 cards) {
             System.out.println(card);

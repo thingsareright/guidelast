@@ -3,6 +3,7 @@ package ssm.dao;
 import org.apache.ibatis.annotations.Param;
 import ssm.entity.User;
 
+import java.util.Date;
 import java.util.List;
 
 public interface UserDao {
@@ -20,4 +21,20 @@ public interface UserDao {
     Integer addAUser(@Param("newUser")User user);
 
     String findPasswordByEmailAddress(@Param("emailAddress") String emailAddress);
+
+    User findARecordByEmail(@Param("emailAddress") String emailaAddress);
+
+    Integer updateHeadByEmailAddress(@Param("emailAddress") String emailAddress, @Param("headFlag") String headFlag);
+
+    Integer updateUserByEmailAddress(@Param("emailAddress") String emailAddress,
+                                     @Param("userName") String userName,
+                                     @Param("userHeadPictureUrl") String userHeadPictureUrl,
+                                     @Param("userSex") int userSex,
+                                     @Param("userBirthday") Date userBirthday);
+
+    Integer updatePassword(@Param("emailAddress") String emailAddress,
+                           @Param("newPassword") String newPassword);
+
+    String checkOldPassword(@Param("emailAddress") String emailAddress,
+                           @Param("oldPassword") String oldPassword);
 }

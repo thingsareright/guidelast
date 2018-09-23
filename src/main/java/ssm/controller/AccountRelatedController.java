@@ -6,7 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ssm.entity.User;
 import ssm.service.impl.AccountRelatedServiceImpl;
+
+import java.sql.Date;
 
 /**
  * 处理与用户账号有关的业务请求
@@ -47,5 +50,40 @@ public class AccountRelatedController {
     ){
         return  accountRelatedServiceImpl.loginWithEmailAndPassword(emailAddress, password);
     }
+
+    @RequestMapping(value = "/findARecordByEmail", method = RequestMethod.POST)
+    @ResponseBody
+    public User findARecordByEmail(@RequestParam(value = "emailAddress",defaultValue="emailAddress") String emailAddress){
+        return accountRelatedServiceImpl.findUserByEmailAddress(emailAddress);
+    }
+
+    @RequestMapping(value = "/updateHeadByEmailAddress", method = RequestMethod.POST)
+    @ResponseBody
+    public Integer updateHeadByEmailAddress(@RequestParam(value = "emailAddress",defaultValue="emailAddress" )String emailAddress,
+                                         @RequestParam(value = "headFlag",defaultValue = "1") String headFlag){
+        return accountRelatedServiceImpl.updateHeadByEmailAddress(emailAddress,headFlag);
+    }
+
+    @RequestMapping(value = "/updateUserByEmailAddress", method = RequestMethod.POST)
+    @ResponseBody
+    public Integer updateUserByEmailAddress(@RequestParam(value = "emailAddress",defaultValue="emailAddress" )String emailAddress,
+                                         @RequestParam(value = "userName",defaultValue="" )String userName,
+                                         @RequestParam(value = "headUrl",defaultValue="1" )String headUrl,
+                                         @RequestParam(value = "sex",defaultValue="1" )int sex,
+                                         @RequestParam(value = "birthday",defaultValue = "birthday") Date birthday){
+       return accountRelatedServiceImpl.updateUserByEmailAddress(emailAddress,userName,headUrl,sex,birthday);
+    }
+
+    @RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
+    @ResponseBody
+    public Integer updatePassword(@RequestParam(value = "emailAddress",defaultValue="emailAddress" )String emailAddress,
+                               @RequestParam(value = "oldPassword", defaultValue = "") String oldPassword,
+                               @RequestParam(value = "newPassword", defaultValue = "") String newPassword){
+        return accountRelatedServiceImpl.updatePassword(emailAddress,oldPassword,newPassword);
+    }
+
+
+
+
 
 }

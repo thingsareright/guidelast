@@ -44,7 +44,30 @@ public class UserDaoTest {
 
     @Test
     public void findPasswordByEmailAddressTest() {
-        String user_email = "mengleizzu@16312.com";
+        String user_email = "mengleizzu@163.com";
         System.out.println(userDao.findPasswordByEmailAddress(user_email));
+    }
+
+    @Test
+    public void findARecordByEmail(){
+        String user_email = "mengleizzu@163.com";
+        User user=userDao.findARecordByEmail(user_email);
+        System.out.println(user);
+    }
+
+    @Test
+    public void updateHeadByEmailAddress(){
+        String email = "2271366490@qq.com";
+        userDao.updateHeadByEmailAddress(email,"1");
+    }
+
+    @Test
+    public void updateUserByEmailAddress(){
+        String email = "2271366490@qq.com";
+        String userName = "孟磊";
+        String userHeadPictureUrl = "2";
+        int userSex = 0;
+        userDao.updateUserByEmailAddress(email,userName,userHeadPictureUrl,userSex,Date.valueOf("1997-08-20"));
+
     }
 }

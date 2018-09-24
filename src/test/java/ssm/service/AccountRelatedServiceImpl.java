@@ -47,15 +47,15 @@ public class AccountRelatedServiceImpl {
     }
 
     @Test
-    public void findARecordByEmail(){
+    public void findARecordByEmailAndPassword(){
         String user_email = "mengleizzu@163.com";
-        System.out.println(accountRelatedServiceImpl.findUserByEmailAddress(user_email));
+        System.out.println(accountRelatedServiceImpl.findUserByEmailAddressAndPassword(user_email,"123456"));
     }
 
     @Test
-    public  void updateHeadByEmailAddress(){
+    public  void updateHeadByEmailAddressAndPassword(){
         String user_email = "mengleizzu@163.com";
-        accountRelatedServiceImpl.updateHeadByEmailAddress(user_email,"2");
+        accountRelatedServiceImpl.updateHeadByEmailAddressAndPassword(user_email,"1","2");
     }
 
     @Test
@@ -64,8 +64,9 @@ public class AccountRelatedServiceImpl {
         String userName = "孟磊";
         String userHeadPictureUrl = "1";
         int userSex = 1;
-        Date date=new Date(1997-5-5);
-        accountRelatedServiceImpl.updateUserByEmailAddress(email,userName,userHeadPictureUrl,userSex,date);
+
+        Integer a = accountRelatedServiceImpl.updateUserByEmailAddressAndPassword(email,"1",userName,userHeadPictureUrl,userSex,Date.valueOf("2201-01-01"));
+        System.out.println(a);
     }
 
     @Test

@@ -22,11 +22,12 @@ public interface UserDao {
 
     String findPasswordByEmailAddress(@Param("emailAddress") String emailAddress);
 
-    User findARecordByEmail(@Param("emailAddress") String emailaAddress);
+    User findARecordByEmailAndPassword(@Param("emailAddress") String emailaAddress, @Param("password") String password);
 
-    Integer updateHeadByEmailAddress(@Param("emailAddress") String emailAddress, @Param("headFlag") String headFlag);
+    Integer updateHeadByEmailAddressAndPassword(@Param("emailAddress") String emailAddress, @Param("password") String password, @Param("headFlag") String headFlag);
 
-    Integer updateUserByEmailAddress(@Param("emailAddress") String emailAddress,
+    Integer updateUserByEmailAddressAndPassword(@Param("emailAddress") String emailAddress,
+                                     @Param("password") String password,
                                      @Param("userName") String userName,
                                      @Param("userHeadPictureUrl") String userHeadPictureUrl,
                                      @Param("userSex") int userSex,

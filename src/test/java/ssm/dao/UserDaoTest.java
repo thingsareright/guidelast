@@ -51,14 +51,14 @@ public class UserDaoTest {
     @Test
     public void findARecordByEmail(){
         String user_email = "mengleizzu@163.com";
-        User user=userDao.findARecordByEmail(user_email);
+        User user=userDao.findARecordByEmailAndPassword(user_email, "123456");
         System.out.println(user);
     }
 
     @Test
-    public void updateHeadByEmailAddress(){
+    public void updateHeadByEmailAddressAndPassword(){
         String email = "2271366490@qq.com";
-        userDao.updateHeadByEmailAddress(email,"1");
+        System.out.println(userDao.updateHeadByEmailAddressAndPassword(email,"1","1"));
     }
 
     @Test
@@ -67,7 +67,7 @@ public class UserDaoTest {
         String userName = "孟磊";
         String userHeadPictureUrl = "2";
         int userSex = 0;
-        userDao.updateUserByEmailAddress(email,userName,userHeadPictureUrl,userSex,Date.valueOf("1997-08-20"));
-
+        Integer a = userDao.updateUserByEmailAddressAndPassword(email,"1",userName,userHeadPictureUrl,userSex,Date.valueOf("1997-08-20"));
+        System.out.println(a);
     }
 }

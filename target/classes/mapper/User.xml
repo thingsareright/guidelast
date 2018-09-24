@@ -21,21 +21,21 @@
         SELECT user_password FROM user WHERE user_email = "${emailAddress}"
     </select>
 
-    <select id="findARecordByEmail" resultType="ssm.entity.User">
-        SELECT * FROM user WHERE user_email = "${emailAddress}"
+    <select id="findARecordByEmailAndPassword" resultType="ssm.entity.User">
+        SELECT * FROM `user` WHERE user_email = "${emailAddress}" AND user_password = "${password}"
     </select>
 
-    <update id="updateHeadByEmailAddress">
+    <update id="updateHeadByEmailAddressAndPassword">
         UPDATE user
         SET user_picture_url = "${headFlag}"
-        WHERE user_email = "${emailAddress}"
+        WHERE user_email = "${emailAddress}" AND user_password = "${password}"
     </update>
 
-    <update id="updateUserByEmailAddress">
-        UPDATE user
+    <update id="updateUserByEmailAddressAndPassword">
+        UPDATE `user`
         SET user_name = "${userName}",user_picture_url = "${userHeadPictureUrl}",
         user_sex = "${userSex}", user_birthday = "${userBirthday}"
-        WHERE user_email = "${emailAddress}"
+        WHERE user_email = "${emailAddress}" AND user_password = "${password}"
     </update>
 
     <update id="updatePassword">

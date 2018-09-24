@@ -51,27 +51,40 @@ public class AccountRelatedController {
         return  accountRelatedServiceImpl.loginWithEmailAndPassword(emailAddress, password);
     }
 
-    @RequestMapping(value = "/findARecordByEmail", method = RequestMethod.POST)
+    @RequestMapping(value = "/findARecordByEmailAndPassword", method = RequestMethod.POST)
     @ResponseBody
-    public User findARecordByEmail(@RequestParam(value = "emailAddress",defaultValue="emailAddress") String emailAddress){
-        return accountRelatedServiceImpl.findUserByEmailAddress(emailAddress);
+    public User findARecordByEmail(@RequestParam(value = "emailAddress",defaultValue="emailAddress") String emailAddress,
+                                    @RequestParam(value ="password", defaultValue = "password") String password){
+        return accountRelatedServiceImpl.findUserByEmailAddressAndPassword(emailAddress, password);
     }
 
-    @RequestMapping(value = "/updateHeadByEmailAddress", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateHeadByEmailAddressAndPassword", method = RequestMethod.POST)
     @ResponseBody
-    public Integer updateHeadByEmailAddress(@RequestParam(value = "emailAddress",defaultValue="emailAddress" )String emailAddress,
+    public Integer updateHeadByEmailAddressAndPassword(@RequestParam(value = "emailAddress",defaultValue="emailAddress" )String emailAddress,
+                                         @RequestParam(value = "password", defaultValue = "password") String password,
                                          @RequestParam(value = "headFlag",defaultValue = "1") String headFlag){
-        return accountRelatedServiceImpl.updateHeadByEmailAddress(emailAddress,headFlag);
+        return accountRelatedServiceImpl.updateHeadByEmailAddressAndPassword(emailAddress,password,headFlag);
     }
 
-    @RequestMapping(value = "/updateUserByEmailAddress", method = RequestMethod.POST)
+    /**
+     * 返回0表示没有修改成功
+     * @param emailAddress
+     * @param password
+     * @param userName
+     * @param headUrl
+     * @param sex
+     * @param birthday
+     * @return
+     */
+    @RequestMapping(value = "/updateUserByEmailAddressAndPassword", method = RequestMethod.POST)
     @ResponseBody
-    public Integer updateUserByEmailAddress(@RequestParam(value = "emailAddress",defaultValue="emailAddress" )String emailAddress,
+    public Integer updateUserByEmailAddressAndPassword(@RequestParam(value = "emailAddress",defaultValue="emailAddress" )String emailAddress,
+                                         @RequestParam(value = "password") String password,
                                          @RequestParam(value = "userName",defaultValue="" )String userName,
                                          @RequestParam(value = "headUrl",defaultValue="1" )String headUrl,
                                          @RequestParam(value = "sex",defaultValue="1" )int sex,
                                          @RequestParam(value = "birthday",defaultValue = "birthday") Date birthday){
-       return accountRelatedServiceImpl.updateUserByEmailAddress(emailAddress,userName,headUrl,sex,birthday);
+       return accountRelatedServiceImpl.updateUserByEmailAddressAndPassword(emailAddress,password,userName,headUrl,sex,birthday);
     }
 
     @RequestMapping(value = "/updatePassword", method = RequestMethod.POST)

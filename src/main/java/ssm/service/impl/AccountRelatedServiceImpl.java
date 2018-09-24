@@ -148,10 +148,10 @@ public class AccountRelatedServiceImpl implements AccountedRelatedService {
     }
 
     /**
-     * 根据邮箱查用户信息
+     * 根据邮箱和密码查用户信息
      */
-    public User findUserByEmailAddress(String emailAddress){
-        User user = userDao.findARecordByEmail(emailAddress);
+    public User findUserByEmailAddressAndPassword(String emailAddress, String password){
+        User user = userDao.findARecordByEmailAndPassword(emailAddress, password);
         return user;
     }
 
@@ -159,10 +159,10 @@ public class AccountRelatedServiceImpl implements AccountedRelatedService {
      * 修改头像
      * @param emailAddress
      * @param headFlag
-     * @return
+     * @return 0表示没有修改成功，1表示修改成功 TODO 可返回更多的状态码
      */
-    public Integer updateHeadByEmailAddress(String emailAddress,String headFlag){
-        return userDao.updateHeadByEmailAddress(emailAddress,headFlag);
+    public Integer updateHeadByEmailAddressAndPassword(String emailAddress, String password, String headFlag){
+        return userDao.updateHeadByEmailAddressAndPassword(emailAddress,password,headFlag);
     }
 
     /**
@@ -174,8 +174,8 @@ public class AccountRelatedServiceImpl implements AccountedRelatedService {
      * @param birthday
      * @return
      */
-    public Integer updateUserByEmailAddress(String emailAddress,String userName, String headFlag, int sex, Date birthday){
-        return userDao.updateUserByEmailAddress(emailAddress,userName,headFlag,sex,birthday);
+    public Integer updateUserByEmailAddressAndPassword(String emailAddress,String password, String userName, String headFlag, int sex, Date birthday){
+        return userDao.updateUserByEmailAddressAndPassword(emailAddress,password, userName,headFlag,sex,birthday);
     }
 
     /**

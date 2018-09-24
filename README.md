@@ -200,10 +200,11 @@
 
 ​	返回类型（状态码）：
 
-| 状态码 | 意义     |
-| ------ | -------- |
-| 1      | 修改成功 |
-| 0      | 未修改   |
+```
+{"userEmail":"mengleizzu@163.com","userPassword":"123456","userName":"张杰","userPictureUrl":"2","userSex":1,"userBirthday":"2018-01-01"}
+```
+
+
 
 #### 2.4.2 更改个人头像接口
 

@@ -11,4 +11,6 @@ public interface PictureDao {
     List<Picture> findARecord();
 
     String findFirstPictureByScenicSpotId(@Param("scenicSpotId") int scenicSpotId);
+
+    Integer insertPictureUrl(@Param("url") String url);
 }

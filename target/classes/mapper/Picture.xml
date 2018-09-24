@@ -12,4 +12,7 @@
         SELECT picture_url FROM picture WHERE scenic_spot_id = ${scenicSpotId} LIMIT 1
     </select>
 
+    <insert id="insertPictureUrl">
+        INSERT INTO picture(picture_url) VALUES ("${url}")
+    </insert>
 </mapper>

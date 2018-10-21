@@ -81,7 +81,7 @@ public class AccountRelatedController {
     public Integer updateUserByEmailAddressAndPassword(@RequestParam(value = "emailAddress",defaultValue="emailAddress" )String emailAddress,
                                          @RequestParam(value = "password") String password,
                                          @RequestParam(value = "userName",defaultValue="" )String userName,
-                                         @RequestParam(value = "headUrl",defaultValue="1" )String headUrl,
+                                         @RequestParam(value = "headUrl",defaultValue="2" )String headUrl,
                                          @RequestParam(value = "sex",defaultValue="1" )int sex,
                                          @RequestParam(value = "birthday",defaultValue = "birthday") Date birthday){
        return accountRelatedServiceImpl.updateUserByEmailAddressAndPassword(emailAddress,password,userName,headUrl,sex,birthday);

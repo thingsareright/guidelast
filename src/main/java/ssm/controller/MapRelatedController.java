@@ -3,10 +3,7 @@ package ssm.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import ssm.dto.MainInterfaceScenicSpotInfo;
-import ssm.dto.ScenicSpotIntroduceInfo;
-import ssm.dto.SearchScenicSpotInfo;
-import ssm.dto.VoiceExplainInfo;
+import ssm.dto.*;
 import ssm.service.MapRelatedService;
 
 import java.util.List;
@@ -57,9 +54,11 @@ public class MapRelatedController {
     @RequestMapping(value = "requestSearchScenicSpotByName", method = RequestMethod.GET)
     @ResponseBody
     public List<SearchScenicSpotInfo> requestSearchScenicSpotByName(
-            @RequestParam(value = "name", defaultValue = "图书馆") String name
+            @RequestParam(value = "name", defaultValue = "图书馆") String name,
+            @RequestParam(value = "start", defaultValue = "0") int start,
+            @RequestParam(value = "len", defaultValue = "10") int length
     ) {
-        return mapRelatedService.searchScenicSpotByName(name);
+        return mapRelatedService.searchScenicSpotByName(name, start, length);
     }
 
     /**
@@ -72,5 +71,32 @@ public class MapRelatedController {
         return mapRelatedService.searchScenicSpotRandom();
     }
 
+    /**
+     * 返回以JSON格式的，对应景区ID为areaId的，从第start条记录开始的length条记录
+     * @param areaId  景区的ID
+     * @param start   从第start条记录开始
+     * @param length    返回记录的数目
+     * @return JSON格式串
+     */
+    @RequestMapping(value = "/searchScenicSpotsByAreaId", method = RequestMethod.GET)
+    @ResponseBody
+    public List<SearchScenicSpotInfo> searchScenicSpotsByAreaId(
+            @RequestParam("areaId") int areaId,
+            @RequestParam("start") int start,
+            @RequestParam("length") int length
+    ) {
+        return mapRelatedService.searchScenicSpotsByAreaId(areaId, start, length);
+    }
 
+    /**
+     * 用于获取热力图的信息
+     * @param views 多少人以上才算是热力图，是个阈值，目前暂定为10
+     * @return
+     */
+    @RequestMapping(value = "/getHotMapPoints")
+    @ResponseBody
+    public List<HotMapInfoSend> getHotMapPoints(
+            @RequestParam(value = "views", defaultValue = "10") int views){
+        return mapRelatedService.getHotMapPointsService(views);
+    }
 }

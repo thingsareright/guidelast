@@ -26,20 +26,41 @@
     <select id="findScenicSpotIntroduceInfo" resultType="ssm.dto.ScenicSpotIntroduceInfo" >
         SELECT scenic_spot.scenic_spot_id, scenic_spot.scenic_spot_name, scenic_spot.scenic_spot_introduce, picture.picture_url
         FROM scenic_spot, picture
-        WHERE scenic_spot.scenic_spot_id=${scenicSpotId} AND scenic_spot.scenic_spot_id=picture.scenic_spot_id
+        WHERE scenic_spot.scenic_spot_id=${scenicSpotId} AND scenic_spot.scenic_spot_id=picture.scenic_spot_id LIMIT 1
     </select>
 
     <select id="searchScenicSpotByName" resultType="ssm.dto.SearchScenicSpotInfo">
         SELECT scenic_spot.scenic_spot_id, scenic_spot.scenic_spot_name,picture.picture_url
         FROM scenic_spot, picture
-        WHERE scenic_spot.scenic_spot_name LIKE '%${name}%' AND scenic_spot.scenic_spot_id = picture.picture_id
-        ORDER BY REPLACE(scenic_spot.scenic_spot_name, '%${name}%', '') LIMIT 10
+        WHERE scenic_spot.scenic_spot_name LIKE '%${name}%' AND scenic_spot.scenic_spot_id = picture.scenic_spot_id
+        ORDER BY REPLACE(scenic_spot.scenic_spot_name, '%${name}%', '')
+        LIMIT ${start}, ${length}
     </select>
 
     <select id="searchScenicSpotRandom" resultType="ssm.dto.SearchScenicSpotInfo" >
         SELECT scenic_spot.scenic_spot_id, scenic_spot.scenic_spot_name,picture.picture_url
         FROM scenic_spot, picture
-        WHERE scenic_spot.scenic_spot_id = picture.picture_id
+        WHERE scenic_spot.scenic_spot_id = picture.scenic_spot_id
         ORDER BY rand() LIMIT 10
+    </select>
+
+    <select id="searchScenicSpotsByArea" resultType="ssm.dto.SearchScenicSpotInfo" >
+        SELECT DISTINCT scenic_spot.scenic_spot_id, scenic_spot.scenic_spot_name
+        FROM scenic_spot
+        WHERE scenic_spot.scenic_area_id=${areaId}
+        ORDER BY scenic_spot.scenic_spot_id
+        LIMIT ${start}, ${length}
+    </select>
+
+    <select id="findSpotIdInfoByLocation" resultType="java.lang.Integer">
+        SELECT scenic_spot_id FROM scenic_spot WHERE (scenic_spot_longitude BETWEEN ${longitude} - 3 AND  ${longitude} + 3)
+        AND (scenic_spot_dimension BETWEEN ${dimension} - 3 AND ${dimension} + 3)
+        ORDER BY ACOS(SIN((${dimension} * 3.1415) / 180 ) *SIN((scenic_spot_dimension * 3.1415) / 180 ) +COS((${dimension} * 3.1415) / 180 ) * COS((scenic_spot_dimension * 3.1415) / 180 ) *COS((${longitude}* 3.1415) / 180 - (scenic_spot_longitude * 3.1415) / 180 ) ) * 6380 ASC LIMIT 0, 1;
+    </select>
+
+    <select id="getHotMapPointsDao" resultType="ssm.dto.HotMapInfo" >
+        SELECT scenic_spot_dimension, scenic_spot_longitude, scenic_spot_num
+        FROM scenic_spot
+        WHERE scenic_spot_num >= ${views}
     </select>
 </mapper>

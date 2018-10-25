@@ -13,4 +13,11 @@
         scenic_area_dimension, scenic_area_score) VALUES ("${scenicArea.scenicaAreaName}", "${scenicArea.scenicAreaIntroduce}",
         ${scenicArea.scenicAreaLongitude},${scenicArea.scenicAreaDimension}, ${scenicArea.scenicAreaScore})
     </insert>
+
+    <select id="findScenicAreaById" resultType="ssm.dto.ScenicAreaNameIntroPictureUrlInfo" >
+        SELECT scenic_area.scenic_area_name, scenic_area.scenic_area_introduce, picture.picture_url
+        FROM scenic_area, picture
+        WHERE scenic_area.scenic_area_id=${scenicAreaId} AND
+        scenic_area.scenic_area_id=picture.scenic_area_id LIMIT 1
+    </select>
 </mapper>

@@ -32,4 +32,9 @@ public class Scenic_Area_DaoTest {
         scenic_areaDao.insertScenicAreaRecord(scenicArea);
     }
 
+    @Test
+    public void findScenicAreaByIdTest() {
+        System.out.println(scenic_areaDao.findScenicAreaById(1));
+    }
+
 }

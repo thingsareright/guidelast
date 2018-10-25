@@ -20,7 +20,7 @@ public class MapRelatedServiceImplTest {
 
     @Test
     public void findMainInterfaceScenicSpotInfo(){
-        List<MainInterfaceScenicSpotInfo> mainInterfaceScenicSpotInfos = mapRelatedService.findMainInterfaceScenicSpotInfo(11.1f,11.2f);
+        List<MainInterfaceScenicSpotInfo> mainInterfaceScenicSpotInfos = mapRelatedService.findMainInterfaceScenicSpotInfo(113.1f,34.2f);
         for (MainInterfaceScenicSpotInfo mainInterfaceScenicSpotInfo :
                 mainInterfaceScenicSpotInfos) {
             System.out.println(mainInterfaceScenicSpotInfo);
@@ -29,16 +29,14 @@ public class MapRelatedServiceImplTest {
 
     @Test
     public void requestScenicSpotIntroduceInfoTest() {
-        System.out.println(mapRelatedService.requestScenicSpotIntroduceInfo(1));
+        System.out.println(mapRelatedService.requestScenicSpotIntroduceInfo(89));
     }
 
     @Test
     public void searchScenicSpotRandomTest() {
-        List<SearchScenicSpotInfo> searchScenicSpotInfos = mapRelatedService.searchScenicSpotRandom();
-        for (SearchScenicSpotInfo searchScenicSpotInfo :
-                searchScenicSpotInfos) {
-            System.out.println(searchScenicSpotInfo);
-        }
+       System.out.println(mapRelatedService.getHotMapPointsService(10));
     }
+
+
 
 }

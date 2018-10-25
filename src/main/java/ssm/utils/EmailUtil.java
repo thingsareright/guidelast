@@ -29,7 +29,7 @@ public class EmailUtil {
         //发送邮件
         Transport tran = session.getTransport();
         //tran.connect("smtp.sina.com", 25, "邮箱账户", "邮箱授权码");//连接到新浪邮箱服务器
-        tran.connect("smtp.qq.com",587, "2271366490@qq.com", "lxghjlbyuapbeajf");//连接到QQ邮箱服务器
+        tran.connect("smtp.qq.com",587, "2271366490@qq.com", "mlplsxqkssuseahi");//连接到QQ邮箱服务器
         tran.sendMessage(messgae, new Address[]{ new InternetAddress(email)});//设置邮件接收人
         tran.close();
     }

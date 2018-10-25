@@ -16,9 +16,9 @@ public interface UserDao {
      * @param emailAddress
      * @return
      */
-    String existEmailAddress(@Param("emailAddress")String emailAddress);
+    String existEmailAddress(@Param("emailAddress") String emailAddress);
 
-    Integer addAUser(@Param("newUser")User user);
+    Integer addAUser(@Param("newUser") User user);
 
     String findPasswordByEmailAddress(@Param("emailAddress") String emailAddress);
 
@@ -27,15 +27,15 @@ public interface UserDao {
     Integer updateHeadByEmailAddressAndPassword(@Param("emailAddress") String emailAddress, @Param("password") String password, @Param("headFlag") String headFlag);
 
     Integer updateUserByEmailAddressAndPassword(@Param("emailAddress") String emailAddress,
-                                     @Param("password") String password,
-                                     @Param("userName") String userName,
-                                     @Param("userHeadPictureUrl") String userHeadPictureUrl,
-                                     @Param("userSex") int userSex,
-                                     @Param("userBirthday") Date userBirthday);
+                                                @Param("password") String password,
+                                                @Param("userName") String userName,
+                                                @Param("userHeadPictureUrl") String userHeadPictureUrl,
+                                                @Param("userSex") int userSex,
+                                                @Param("userBirthday") Date userBirthday);
 
     Integer updatePassword(@Param("emailAddress") String emailAddress,
                            @Param("newPassword") String newPassword);
 
     String checkOldPassword(@Param("emailAddress") String emailAddress,
-                           @Param("oldPassword") String oldPassword);
+                            @Param("oldPassword") String oldPassword);
 }

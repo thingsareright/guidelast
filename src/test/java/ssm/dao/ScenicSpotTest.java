@@ -54,7 +54,7 @@ public class ScenicSpotTest {
 
     @Test
     public void searchScenicSpotByNameTest() {
-        List<SearchScenicSpotInfo> searchScenicSpotInfos = scenicSpotDao.searchScenicSpotByName("图书馆");
+        List<SearchScenicSpotInfo> searchScenicSpotInfos = scenicSpotDao.searchScenicSpotByName("书",0,10);
         for (SearchScenicSpotInfo searchScenicSpotInfo :
                 searchScenicSpotInfos) {
             System.out.println(searchScenicSpotInfo);
@@ -70,4 +70,17 @@ public class ScenicSpotTest {
         }
     }
 
+    @Test
+    public void searchScenicSpotsByAreaTest() {
+        List<SearchScenicSpotInfo> searchScenicSpotInfos = scenicSpotDao.searchScenicSpotsByArea(1,0,30);
+        for (SearchScenicSpotInfo searchScenicSpotInfo :
+                searchScenicSpotInfos) {
+            System.out.println(searchScenicSpotInfo);
+        }
+    }
+
+    @Test
+    public void getHotMapPointsDaoTest() {
+        System.out.println(scenicSpotDao.getHotMapPointsDao(10));
+    }
 }

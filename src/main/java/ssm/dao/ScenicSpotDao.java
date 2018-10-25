@@ -2,6 +2,7 @@ package ssm.dao;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestParam;
+import ssm.dto.HotMapInfo;
 import ssm.dto.ScenicSpotIntroduceInfo;
 import ssm.dto.SearchScenicSpotInfo;
 import ssm.dto.VoiceExplainInfo;
@@ -49,7 +50,7 @@ public interface ScenicSpotDao {
      * @param name
      * @return
      */
-    List<SearchScenicSpotInfo> searchScenicSpotByName(@Param("name") String name);
+    List<SearchScenicSpotInfo> searchScenicSpotByName(@Param("name") String name, @Param("start") int start, @Param("length") int length);
 
     /**
      * 从数据库中随机选取十个景点
@@ -57,4 +58,25 @@ public interface ScenicSpotDao {
      */
     List<SearchScenicSpotInfo> searchScenicSpotRandom();
 
+    /**
+     * 获取某景区的所有ID
+     * @param areaId
+     * @return
+     */
+    List<SearchScenicSpotInfo> searchScenicSpotsByArea(@Param("areaId") int areaId, @Param("start") int start, @Param("length") int length);
+
+    /**
+     * 找离得最近的景点ID
+     * @param longitude
+     * @param dimension
+     * @return
+     */
+    Integer findSpotIdInfoByLocation(@Param("longitude") float longitude, @Param("dimension") float dimension);
+
+    /**
+     * 返回在线数大于views的点的集合
+     * @param views 返回
+     * @return
+     */
+    List<HotMapInfo> getHotMapPointsDao(@Param("views") int views);
 }

@@ -1,9 +1,6 @@
 package ssm.service;
 
-import ssm.dto.MainInterfaceScenicSpotInfo;
-import ssm.dto.ScenicSpotIntroduceInfo;
-import ssm.dto.SearchScenicSpotInfo;
-import ssm.dto.VoiceExplainInfo;
+import ssm.dto.*;
 
 import java.util.List;
 
@@ -23,7 +20,11 @@ public interface MapRelatedService {
 
     ScenicSpotIntroduceInfo requestScenicSpotIntroduceInfo(int scenicSpotId);
 
-    List<SearchScenicSpotInfo> searchScenicSpotByName(String name);
+    List<SearchScenicSpotInfo> searchScenicSpotByName(String name, int start, int length);
 
     List<SearchScenicSpotInfo> searchScenicSpotRandom();
+
+    List<SearchScenicSpotInfo> searchScenicSpotsByAreaId(int areaId, int start, int length);
+
+    List<HotMapInfoSend> getHotMapPointsService(int views);
 }
